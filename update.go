@@ -18,7 +18,7 @@ func (u update) Col(col string, val string) column {
 	return column(u) + " = " + column(val)
 }
 func (u column) Col(col string, val string) column {
-	return column(", ") + u + " = " + column(val)
+	return u + column(", ") + column(col) + " = " + column(val)
 }
 
 func (u column) String() string {
