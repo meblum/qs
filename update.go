@@ -83,8 +83,8 @@ func (w updateWhere) Not() updateNot {
 	return updateNot(w) + updateNot(" NOT")
 }
 
-func (w updateWhere) Between(val string) between {
-	return between(w) + " BETWEEN " + between(val)
+func (w updateWhere) Between(val1, val2 string) updateCondition {
+	return updateCondition(w) + " BETWEEN " + updateCondition(val1+" AND "+val2)
 }
 
 func (w updateNot) Equals(val string) updateCondition {
@@ -120,8 +120,8 @@ func (w updateNot) ILike(val string) updateCondition {
 	return updateCondition(w) + " ILIKE " + updateCondition(val)
 }
 
-func (w updateNot) Between(val string) between {
-	return between(w) + " BETWEEN " + between(val)
+func (w updateNot) Between(val1, val2 string) updateCondition {
+	return updateCondition(w) + " BETWEEN " + updateCondition(val1+" AND "+val2)
 }
 
 func (b updateNot) And(val string) updateCondition {

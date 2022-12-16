@@ -1,9 +1,5 @@
 package qs
 
-// q := fmt.Sprint("SELECT id, street, city, state, county, zip, property_type, ",
-// 		"construction_type, lockbox, first_name, last_name, cell_phone, email, status, ",
-// 		"created_by, updated_at FROM projects ", whereQ, "ORDER BY updated_at ", orderBy,
-// 		" LIMIT $1 OFFSET $2", ";")
 import (
 	"strconv"
 	"strings"
@@ -13,7 +9,6 @@ type selct string
 type from string
 type where string
 type not string
-type between string
 type condition string
 type orderBy string
 type nextOrderBy string
@@ -104,8 +99,8 @@ func (w where) Not() not {
 	return not(w) + not(" NOT")
 }
 
-func (w where) Between(val string) between {
-	return between(w) + " BETWEEN " + between(val)
+func (w where) Between(val1, val2 string) condition {
+	return condition(w) + " BETWEEN " + condition(val1+" AND "+val2)
 }
 
 func (w not) Equals(val string) condition {
@@ -141,12 +136,8 @@ func (w not) ILike(val string) condition {
 	return condition(w) + " ILIKE " + condition(val)
 }
 
-func (w not) Between(val string) between {
-	return between(w) + " BETWEEN " + between(val)
-}
-
-func (b between) And(val string) condition {
-	return condition(b) + " AND " + condition(val)
+func (w not) Between(val1, val2 string) condition {
+	return condition(w) + " BETWEEN " + condition(val1+" AND "+val2)
 }
 
 func (c condition) String() string {
