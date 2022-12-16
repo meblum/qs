@@ -21,6 +21,10 @@ func (u column) Col(col string, val string) column {
 	return u + column(", ") + column(col) + " = " + column(val)
 }
 
+func (u column) Returning(cols ...string) returning {
+	return returning(u) + returning(" RETURNING "+strings.Join(cols, ", "))
+}
+
 func (u column) String() string {
 	return string(u)
 }
@@ -122,7 +126,9 @@ func (w updateNot) Between(val1, val2 string) updateCondition {
 func (b updateNot) And(val string) updateCondition {
 	return updateCondition(b) + " AND " + updateCondition(val)
 }
-
+func (u updateCondition) Returning(cols ...string) returning {
+	return returning(u) + returning(" RETURNING "+strings.Join(cols, ", "))
+}
 func (c updateCondition) String() string {
 	return string(c)
 }
