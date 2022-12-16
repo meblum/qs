@@ -10,6 +10,8 @@ type insert string
 type delete string
 type update string
 
+type returning string
+
 // conditions
 type where string
 type not string
@@ -28,8 +30,7 @@ type updateWhere string
 type updateNot string
 type updateCondition string
 
-type returning string
-
+// insert
 type val struct {
 	table    string
 	col, val []string
