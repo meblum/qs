@@ -4,11 +4,6 @@ import (
 	"strings"
 )
 
-// q := fmt.Sprint("SELECT id, street, city, state, county, zip, property_type, ",
-// 		"construction_type, lockbox, first_name, last_name, cell_phone, email, status, ",
-// 		"created_by, updated_at FROM projects ", whereQ, "ORDER BY updated_at ", orderBy,
-// 		" LIMIT $1 OFFSET $2", ";")
-
 type update string
 type column string
 type updateWhere string
